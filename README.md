@@ -23,9 +23,9 @@ Prepare a Logo image file (1:1 square). The best size is **larger than 1600x1600
 
 `python main.py`
 
-3. export to project root folder.
+3. export to project `asset` folder.
 
-`icon.png`, 
-`splash.png`, 
-`favicon.png`, 
-`adaptive-icon.png`
+`./asset/icon.png`, 
+`./asset/splash.png`, 
+`./asset/favicon.png`, 
+`./asset/adaptive-icon.png`

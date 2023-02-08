@@ -1,4 +1,5 @@
 from PIL import Image
+from pathlib import Path
 
 def resize_and_crop_icon(image, size):
     # Resize the image while preserving aspect ratio
@@ -28,26 +29,28 @@ def resize_and_center_logo(image, size):
 
     return background
 
+Path("./asset").mkdir(parents=True, exist_ok=True)
+
 # Load the original icon image
 icon = Image.open("logo.png")
 
 # Generate the 1600x1600 icon
 icon_1600 = icon.resize((1600, 1600), Image.ANTIALIAS)
-icon_1600.save("icon.png")
+icon_1600.save("asset/icon.png")
 
 # Generate the 1284x2778 splash
 splash = Image.new("RGBA", (1284, 2778), (255, 255, 255, 0))
 logo = resize_and_center_logo(icon, (265, 265))
 offset = ((1284 - logo.size[0]) // 2, (2778 - logo.size[1]) // 3)
 splash.paste(logo, offset)
-splash.save("splash.png")
+splash.save("asset/splash.png")
 
 # Generate the 48x48 favicon
 favicon = resize_and_crop_icon(icon, (48, 48))
-favicon.save("favicon.png")
+favicon.save("asset/favicon.png")
 
 # Generate the 1600x1600 adaptive-icon
 adaptive_icon = Image.new("RGBA", (1600, 1600), (255, 255, 255, 0))
 icon_mask = resize_and_crop_icon(icon, (1600, 1600))
 adaptive_icon.paste(icon_mask, (0, 0), icon_mask)
-adaptive_icon.save("adaptive-logo.png")
+adaptive_icon.save("asset/adaptive-icon.png")
